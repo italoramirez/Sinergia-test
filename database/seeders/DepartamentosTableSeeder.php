@@ -17,6 +17,8 @@ class DepartamentosTableSeeder extends Seeder
             'Amazonas',
             'Antioquia',
             'Arauca',
+            'Tolima',
+            'Valle del Cauca',
         ];
 
         foreach ($departamentos as $nombre) {

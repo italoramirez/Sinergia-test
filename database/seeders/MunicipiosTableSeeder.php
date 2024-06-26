@@ -18,6 +18,8 @@ class MunicipiosTableSeeder extends Seeder
             'Amazonas' => ['Leticia', 'Puerto Nariño'],
             'Antioquia' => ['Medellín', 'Bello', 'Itagüí'],
             'Arauca' => ['Arauca', 'Arauquita', 'Saravena'],
+            'Tolima' => ['Ibagué', 'Espinal', 'Melgar'],
+            'Valle del Cauca' => ['Cali', 'Buenaventura', 'Palmira'],
         ];
 
         foreach ($municipios as $departamento => $municipios) {
