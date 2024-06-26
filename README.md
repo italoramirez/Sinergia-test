@@ -28,3 +28,7 @@
 - npm install
 - npm run dev
 
+##Usuario para ingresar al sistema
+- documeto: 1234567890
+- password: 1234567890
+
