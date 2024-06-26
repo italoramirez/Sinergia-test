@@ -1,0 +1,58 @@
+version: "3.8"
+name: test
+x-logging: &default-logging
+  options:
+    max-size: "100m"
+    max-file: "5"
+  driver: json-file
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www/html
+    container_name: sinergia-api
+    environment:
+      - XDG_CONFIG_HOME=/some/writeable/directory
+    restart: unless-stopped
+    logging: *default-logging
+    volumes:
+      - ../sinergia:/var/www/html
+    ports:
+      - "9000:80"
+    networks:
+      - app-net
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    container_name: sinergia-nginx
+    logging: *default-logging
+    volumes:
+      - ../sinergia:/var/www/html
+      - ./nginx:/etc/nginx/conf.d/
+    ports:
+      - "8000:80"
+    networks:
+      - app-net
+    depends_on:
+      - php
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: sinergia-db
+    logging: *default-logging
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-net
+networks:
+  app-net:
+    driver: bridge
+    name: app-net
