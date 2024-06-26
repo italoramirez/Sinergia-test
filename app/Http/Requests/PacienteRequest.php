@@ -32,7 +32,6 @@ class PacienteRequest extends FormRequest
             'departamento_id' => 'required|exists:departamentos,id',
             'municipio_id' => 'required|exists:municipios,id',
             'tipo_documento_id' => 'required|exists:tipo_documentos,id',
-            'photo' => 'nullable|image|mimes:jpeg,png,bmp,gif,svg,webp|max:2048'
         ];
     }
 
